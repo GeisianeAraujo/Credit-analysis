@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Spyder Editor
+Created on Sat Dec  7 22:12:46 2018
 
-Este é um arquivo de script temporário.
+@author: GeisyPC
 """
 
 import pandas as pd
@@ -46,3 +46,16 @@ previsores[:,0:3] = imputer.transform(previsores[:,0:3])
 from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 previsores = scaler.fit_transform(previsores)
+
+# Criando a base de dados de treinamento e a de teste
+from sklearn.cross_validation import train_test_split
+previsores_treinamento, previsores_teste, classe_treinamento, classe_teste = train_test_split(previsores, classe, test_size=0.25, random_state=0)
+
+# importação da biblioteca
+# criação do classificador
+classificador.fit(previsores_treinamento, classe_treinamento)
+previsoes = classificador.predict(previsores_teste)
+
+from sklearn.metrics import confusion_matrix, accuracy_score
+precisao = accuracy_score(classe_teste, previsoes)
+matriz = confusion_matrix(classe_teste, previsoes)
