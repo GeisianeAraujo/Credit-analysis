@@ -7,7 +7,7 @@ Created on Sat Dec  8 22:31:45 2018
 
 import pandas as pd
 
-base = pd.read_csv('credit_data.csv')
+base = pd.read_csv('credit-data.csv')
 base.loc[base.age < 0, 'age'] = 40.92
                
 previsores = base.iloc[:, 1:4].values
@@ -22,7 +22,7 @@ from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 previsores = scaler.fit_transform(previsores)
 
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection  import train_test_split
 previsores_treinamento, previsores_teste, classe_treinamento, classe_teste = train_test_split(previsores, classe, test_size=0.25, random_state=0)
 
 from sklearn.naive_bayes import GaussianNB
